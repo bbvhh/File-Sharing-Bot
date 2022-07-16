@@ -90,8 +90,8 @@ async def start_command(client: Client, message: Message):
         reply_markup = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("😊 About Me", callback_data = "about"),
-                    InlineKeyboardButton("🔒 Close", callback_data = "close")
+                    InlineKeyboardButton("ME", callback_data = "about"),
+                    InlineKeyboardButton("❌️", callback_data = "close")
                 ]
             ]
         )
@@ -178,14 +178,18 @@ async def send_text(client: Bot, message: Message):
                 unsuccessful += 1
                 pass
             total += 1
+       
+        status = f"""<b>✅️ BROARDCAST PASSED!</b>
         
-        status = f"""<b><u>Broadcast Completed</u>
+Total Users     : <code>{total}</code>
 
-Total Users: <code>{total}</code>
-Successful: <code>{successful}</code>
-Blocked Users: <code>{blocked}</code>
-Deleted Accounts: <code>{deleted}</code>
-Unsuccessful: <code>{unsuccessful}</code></b>"""
+Sent            : <code>{successful}</code>
+
+Unsent          : <code>{unsuccessful}</code>
+
+Blocked Users   : <code>{blocked}</code>
+
+Deleted Accounts: <code>{deleted}</code>"""
         
         return await pls_wait.edit(status)
 
